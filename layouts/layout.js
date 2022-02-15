@@ -98,7 +98,7 @@ const Layout = ({
           </button>
         </a>
       </div>
-      <Comments frontMatter={frontMatter} />
+      {frontMatter.type[0] === 'Page' && <Comments frontMatter={frontMatter} />}
     </Container>
   )
 }
