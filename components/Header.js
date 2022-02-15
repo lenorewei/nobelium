@@ -74,7 +74,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
                 <Image
                   width="24"
                   height="24"
-                  src={`https://picture-1254182071.cos.ap-beijing.myqcloud.com/photo/android-chrome-512x512.png`}
+                  src={'https://picture-1254182071.cos.ap-beijing.myqcloud.com/photo/android-chrome-512x512.png'}
                 />
               </div>
             </a>
