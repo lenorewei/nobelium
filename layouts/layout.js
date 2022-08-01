@@ -1,12 +1,24 @@
-// import Image from 'next/image'
+import Image from 'next/image'
+// import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import TweetEmbed from 'react-tweet-embed'
+import { Code } from 'react-notion-x/build/third-party/code'
+import { Collection } from 'react-notion-x/build/third-party/collection'
+import { Equation } from 'react-notion-x/build/third-party/equation'
+import { Pdf } from 'react-notion-x/build/third-party/pdf'
+import { Modal } from 'react-notion-x/build/third-party/modal'
 import Container from '@/components/Container'
 import TagItem from '@/components/TagItem'
-import { NotionRenderer, Equation, Code, Collection, CollectionRow } from 'react-notion-x'
+import { NotionRenderer } from 'react-notion-x'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import { useLocale } from '@/lib/locale'
 import { useRouter } from 'next/router'
 import Comments from '@/components/Comments'
+
+const Tweet = ({ id }) => {
+  return <TweetEmbed tweetId={id} />
+}
 
 const mapPageUrl = id => {
   return 'https://www.notion.so/' + id.replace(/-/g, '')
@@ -17,6 +29,7 @@ const Layout = ({
   blockMap,
   frontMatter,
   emailHash,
+  rootPageId,
   fullWidth = false
 }) => {
   const locale = useLocale()
@@ -69,14 +82,19 @@ const Layout = ({
           <div className="-mt-4">
             <NotionRenderer
               recordMap={blockMap}
-              components={{
-                equation: Equation,
-                code: Code,
-                collection: Collection,
-                collectionRow: CollectionRow
-              }}
+              rootPageId={rootPageId}
               mapPageUrl={mapPageUrl}
-            />
+              previewImages={false}
+              components={{
+                nextImage: Image,
+                nextLink: Link,
+                Code,
+                Collection,
+                Equation,
+                Pdf,
+                Modal,
+                Tweet
+              }}/>
           </div>
         )}
       </article>

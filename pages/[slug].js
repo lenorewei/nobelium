@@ -11,6 +11,7 @@ const BlogPost = ({ post, blockMap, emailHash }) => {
       frontMatter={post}
       emailHash={emailHash}
       fullWidth={post.fullWidth}
+      rootPageId={post.id}
     />
   )
 }
